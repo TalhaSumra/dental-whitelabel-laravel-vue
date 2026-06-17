@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.reveal.in {
+    opacity: 1;
+    transform: none;
+}
+
+@keyframes dg-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.marquee {
+    overflow: hidden;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: dg-marquee 38s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.marquee-track.reverse {
+    animation-direction: reverse;
+}
+
+@keyframes dg-floaty {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(24px, -34px); }
+}
+
+@keyframes dg-floaty-2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, 24px); }
+}
+
+.dg-float-1 { animation: dg-floaty 16s ease-in-out infinite; }
+.dg-float-2 { animation: dg-floaty-2 19s ease-in-out infinite; }
+
+@keyframes dg-gradient {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.animate-gradient {
+    background-size: 200% auto;
+    animation: dg-gradient 6s linear infinite;
+}
+
+@keyframes dg-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.dg-bob { animation: dg-bob 5s ease-in-out infinite; }
+.dg-bob-slow { animation: dg-bob 7s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+    .marquee-track, .dg-float-1, .dg-float-2, .animate-gradient, .dg-bob, .dg-bob-slow { animation: none !important; }
+}
+
+.card {
+    @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm;
+}
+
+.btn-primary {
+    @apply inline-flex items-center rounded-xl bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800;
+}
+
+.input {
+    @apply w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100;
+}
+
+.label {
+    @apply text-sm font-semibold text-slate-700;
+}
